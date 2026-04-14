@@ -1,0 +1,42 @@
+# --- ROOT ---
+node_modules/
+.env
+.env.local
+.env.*.local
+.DS_Store
+dist/
+dist-ssr/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.vscode/
+.idea/
+
+# --- FRONTEND ---
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# --- SERVER ---
+server/node_modules/
+server/.env
+server/.env.local
+server/output.log
+
+# --- LEGACY/UNUSED ---
+backend/venv/
+backend/__pycache__/
+*.suo
+*.sln
+*.sw?
+*.ntvs*
+*.njsproj
+
+# --- ASSETS (Keep the repo light) ---
+*.png
+*.jpg
+*.jpeg
+*.mp4
+!frontend/public/

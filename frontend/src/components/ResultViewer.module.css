@@ -1,0 +1,228 @@
+.wrapper {
+  margin-top: 48px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.tabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  padding: 8px;
+  gap: 8px;
+  border-bottom: 1px solid var(--color-neutral-dark);
+}
+
+.tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-md);
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  background: white;
+  color: var(--color-primary);
+}
+
+.activeTab {
+  background: white;
+  color: var(--color-accent-vibrant);
+  box-shadow: var(--shadow-sm);
+}
+
+.content {
+  padding: 48px;
+}
+
+.section h3 {
+  font-size: 2.5rem;
+  margin-bottom: 32px;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section h3::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--grad-premium);
+  opacity: 0.1;
+}
+
+/* Document Rendering Styles */
+.markdownContent {
+  color: var(--color-text);
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.markdownContent h1, 
+.markdownContent h2, 
+.markdownContent h3 {
+  margin: 2.5rem 0 1.5rem;
+  color: var(--color-primary);
+}
+
+.markdownContent p {
+  margin-bottom: 1.5rem;
+}
+
+.markdownContent strong {
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+.markdownContent blockquote {
+  border-left: 4px solid var(--color-accent);
+  padding-left: 24px;
+  margin: 32px 0;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+/* IPC & Precedent Cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  padding: 32px;
+  border-radius: var(--radius-md);
+  background: white;
+  border: 1px solid var(--color-neutral-dark);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-accent-vibrant);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.badge {
+  background: var(--grad-accent);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-weight: 800;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cardTitle {
+  font-family: var(--font-headline);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.cardMeta {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+  display: flex;
+  gap: 16px;
+}
+
+.cardBody {
+  font-size: 1rem;
+  color: #334155;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-neutral-dark);
+}
+
+.tag {
+  background: var(--color-neutral);
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* Expandable Box */
+.expandableContainer {
+  position: relative;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  border: 1px solid var(--color-neutral-dark);
+  margin-bottom: 32px;
+}
+
+.expandableContent {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.collapsed {
+  -webkit-line-clamp: 2;
+}
+
+.expanded {
+  -webkit-line-clamp: unset;
+}
+
+.expandBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  background: none;
+  border: none;
+  color: var(--color-accent-vibrant);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 0;
+  cursor: pointer;
+}
+
+.expandBtn svg {
+  transition: transform 0.3s ease;
+}
+
+.expandedBtn svg {
+  transform: rotate(180deg);
+}
+
+.emptyState {
+  text-align: center;
+  padding: 40px;
+  color: var(--color-text-muted);
+}
+

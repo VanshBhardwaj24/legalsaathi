@@ -1,0 +1,100 @@
+.wrapper {
+  background-color: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 32px;
+}
+
+.title {
+  color: var(--color-primary);
+  font-size: 18px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-neutral);
+  border: 2px solid var(--color-neutral-dark);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.line {
+  flex-grow: 1;
+  height: 2px;
+  background-color: var(--color-neutral-dark);
+  margin: 0 16px;
+  transform: translateY(-16px);
+  z-index: 1;
+  transition: background-color 0.3s ease;
+}
+
+/* States */
+.active .circle {
+  border-color: var(--color-tertiary);
+  background-color: color-mix(in srgb, var(--color-tertiary) 10%, transparent);
+  color: var(--color-primary);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-tertiary) 20%, transparent);
+  animation: pulse 2s infinite;
+}
+
+.active .label {
+  color: var(--color-primary);
+}
+
+.complete .circle {
+  border-color: var(--color-success);
+  background-color: var(--color-success);
+  color: var(--color-white);
+}
+
+.complete .label {
+  color: var(--color-success);
+}
+
+.lineActive {
+  background-color: var(--color-success);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(197, 160, 89, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
+}
+
+@media (max-width: 600px) {
+  .label {
+    text-align: center;
+    max-width: 80px;
+  }
+}

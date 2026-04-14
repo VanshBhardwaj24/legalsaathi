@@ -1,0 +1,60 @@
+.card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.iconWrapper {
+  background-color: color-mix(in srgb, var(--color-tertiary) 15%, transparent);
+  color: var(--color-primary);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.card:nth-child(2n) .iconWrapper {
+  background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+.title {
+  color: var(--color-primary);
+  font-size: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.description {
+  color: var(--color-text-muted);
+  font-size: 16px;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.cta {
+  align-self: flex-start;
+  background: transparent;
+  color: var(--color-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  padding: 0;
+}
+
+.cta:hover {
+  color: var(--color-tertiary);
+}
