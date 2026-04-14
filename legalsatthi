@@ -1,0 +1,62 @@
+# Implementation Plan: LegalSaathi 2.0 Roadmap
+
+This plan outlines a 20-feature expansion categorized into four strategic pillars: **User Experience**, **Legal Depth**, **Productivity**, and **Operational Excellence**.
+
+## User Review Required
+
+> [!IMPORTANT]
+> This is a long-term roadmap. We will prioritize features based on your feedback. 
+> 
+> **Proposed Phase 1 Focus**: PDF Export, Multilingual Support, and Evidence Matrix.
+
+## Pillar 1: High-Fidelity User Experience
+1.  **Pro PDF Export**: High-fidelity PDF generation using `react-pdf` with official legal formatting.
+2.  **Multilingual Intake**: Real-time translation for 10+ regional Indian languages (Hindi, Tamil, etc.).
+3.  **Voice-to-Case**: Integrated voice recording and transcription for hands-free case narration.
+4.  **Legal Terms Glossary**: Interactive "Hover Tooltips" for complex legal jargon (e.g., *Habeas Corpus*).
+5.  **Mobile PWA**: Transform the app into a Progressive Web App for home-screen access on mobile.
+
+## Pillar 2: Deep Legal Intelligence
+6.  **Evidence Matrix**: Automatically generated checklist of certificates/documents needed for each cited IPC section.
+7.  **Timeline Visualizer**: An interactive chronological chart of events extracted from the case summary.
+8.  **Jurisdiction Map**: Geolocation-based finder for the nearest relevant High Court or Police Station.
+9.  **Precedent Heatmap**: Geographic visualization of where matched case laws originated.
+10. **Interactive Q&A Agent**: A specialized follow-up chat specifically for the generated research results.
+
+## Pillar 3: Productivity & Drafting
+11. **Magistrate Templates**: Specialized draft formats for FIRs, Legal Notices, Bail Applications, and Petitions.
+12. **Auto-Redaction**: A one-click tool to hide PII (Personally Identifiable Information) before sharing.
+13. **Court Fee Calculator**: Automatic estimation of filing fees and stamp duties based on case type.
+14. **Collaborative Review**: Secure "Share Links" for read-only access by secondary legal teams.
+15. **Draft Versioning**: Version history to track how edits to the "Intake" summary affect the legal draft.
+
+## Pillar 4: Operational & Security
+16. **User Profiles/Auth**: Secure login using Clerk or Firebase to manage multiple case folders.
+17. **Anonymous Mode**: Client-side data encryption for high-sensitivity legal consultations.
+18. **e-Courts Integration**: Preliminary tracking of existing case status via PNR/Case Number.
+19. **Advocate Marketplace**: A referral system connecting users to lawyers specialized in their specific case type.
+20. **Dark/Glass Mode Toggle**: Enhanced UI themes for formal night-time legal research.
+
+---
+
+## Proposed Execution Workflow
+
+### Phase 1: The "Magistrate's Toolkit" (Immediate)
+- PDF Export
+- Multilingual Support
+- Legal Glossary
+- Evidence Matrix
+
+### Phase 2: The "Sovereign Vault" (Account/Security)
+- User Authentication
+- Case Folders
+- Anonymous Mode
+
+### Phase 3: "Jurisprudence Pro" (Advanced AI)
+- Timeline Visualizer
+- Interactive Q&A
+- e-Courts tracking
+
+## Verification Plan
+- **Automated Tests**: Unit tests for translation and PDF rendering engines.
+- **Manual Verification**: Cross-referencing AI-generated evidence lists with standard CrPC requirements.

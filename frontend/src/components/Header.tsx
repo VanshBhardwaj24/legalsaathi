@@ -1,8 +1,10 @@
-import React from 'react';
-import { Scale, FileText, Settings, Home } from 'lucide-react';
+import { Scale, FileText, Settings, Home, Sun, Moon } from 'lucide-react';
 import styles from './Header.module.css';
+import { useTheme } from '../context/ThemeContext';
 
 export const Header: React.FC = () => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -11,6 +13,13 @@ export const Header: React.FC = () => {
           <h1>LegalSaathi</h1>
         </div>
         <nav className={styles.nav}>
+          <button 
+            onClick={toggleTheme} 
+            className={styles.themeToggle}
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+          </button>
           <a href="#" className={styles.navLink}>
             <Home size={18} /> Home
           </a>

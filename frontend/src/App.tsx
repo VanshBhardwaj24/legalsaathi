@@ -9,12 +9,14 @@ import { AnalysisForm } from './components/AnalysisForm';
 import { AgentProgress } from './components/AgentProgress';
 import { ResultViewer } from './components/ResultViewer';
 import { useAnalysis } from './hooks/useAnalysis';
+import { ThemeProvider } from './context/ThemeContext';
 
 export const App: React.FC = () => {
   const { loading, result, agents, analyze } = useAnalysis();
 
   return (
-    <div className="app">
+    <ThemeProvider>
+      <div className="app">
       <Header />
       
       <main>
@@ -121,7 +123,8 @@ export const App: React.FC = () => {
            © 2025 LegalSaathi AI. Built for the Sovereign Republic of India.
          </div>
       </footer>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 };
 
