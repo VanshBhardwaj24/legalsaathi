@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Copy, Download, FileText, Search, Scale, FileSignature, Sparkles, ExternalLink, ChevronDown } from 'lucide-react';
+import { Copy, FileText, Search, Scale, FileSignature, Sparkles, ExternalLink, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import styles from './ResultViewer.module.css';

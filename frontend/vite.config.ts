@@ -15,19 +15,14 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: false, // Security: Disable sourcemaps in production
-    minify: 'terser', // Optimized minification
-    terserOptions: {
-      compress: {
-        drop_console: true, // Performance: Remove console logs in prod
-        drop_debugger: true
-      }
-    },
+    sourcemap: false,
+    chunkSizeWarningLimit: 1600,
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vendor': ['react', 'react-dom'],
-          'ui': ['framer-motion', 'lucide-react', 'react-markdown']
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
         }
       }
     }

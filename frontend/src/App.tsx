@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileText, Search, Scale, Shield, Landmark, Gavel } from 'lucide-react';
+import { Shield, Landmark, Gavel } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
