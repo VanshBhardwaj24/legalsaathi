@@ -13,7 +13,8 @@ export const runEvidence = async (intakeResult, ipcResult) => {
         "    \"category\": \"[e.g., Medical, Documentary, Testimonial, Digital]\",\n" +
         "    \"document\": \"[Name of the specific document or evidence]\",\n" +
         "    \"importance\": \"High\" | \"Medium\" | \"Low\",\n" +
-        "    \"reason\": \"[Why this is needed for the specific IPC/Legal section]\"\n" +
+        "    \"reason\": \"[Why this is needed for the specific IPC/Legal section]\",\n" +
+        "    \"action_step\": \"[Actionable instruction on how to obtain or preserve this evidence]\"\n" +
         "  }\n" +
         "]";
 

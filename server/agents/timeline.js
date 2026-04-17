@@ -15,6 +15,7 @@ export const runTimeline = async (intakeResult) => {
         "  {\n" +
         "    \"title\": \"[Date/Sequence Focus]\",\n" +
         "    \"cardTitle\": \"[Brief Title of Event]\",\n" +
+        "    \"cardSubtitle\": \"[Parties/People involved in this specific event]\",\n" +
         "    \"cardDetailedText\": \"[Detailed description of what occurred]\"\n" +
         "  }\n" +
         "]";

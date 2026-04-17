@@ -44,17 +44,18 @@ export const ResultViewer: React.FC<ResultViewerProps> = ({ data }) => {
     navigator.clipboard.writeText(text);
   };
 
-  const findNearestCourt = async () => {
-    // POC: Using OSM Nominatim to find courts near current map center
+  const findNearestPOI = async (poiType: string) => {
+    // Determine jurisdiction fallback
+    const queryLocation = data.structured?.jurisdiction || "New Delhi";
     try {
-      const resp = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=court&lat=${mapCenter[0]}&lon=${mapCenter[1]}&addressdetails=1&limit=5`);
+      const resp = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${poiType} in ${queryLocation}&addressdetails=1&limit=5`);
       const results = await resp.json();
       setFoundCourts(results);
       if (results.length > 0) {
         setMapCenter([parseFloat(results[0].lat), parseFloat(results[0].lon)]);
       }
     } catch (e) {
-      console.error("Court lookup failed", e);
+      console.error(`${poiType} lookup failed`, e);
     }
   };
 
@@ -148,6 +149,11 @@ export const ResultViewer: React.FC<ResultViewerProps> = ({ data }) => {
                       <div className={styles.evidenceInfo}>
                         <h4>{item.document}</h4>
                         <p>{item.reason}</p>
+                        {item.action_step && (
+                          <div style={{ marginTop: '8px', padding: '8px', background: 'var(--color-neutral)', borderRadius: 'var(--radius-sm)', fontSize: '0.875rem' }}>
+                            <strong>Action:</strong> {item.action_step}
+                          </div>
+                        )}
                       </div>
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
                         <span className={styles.badge}>{item.category}</span>
@@ -164,8 +170,11 @@ export const ResultViewer: React.FC<ResultViewerProps> = ({ data }) => {
             {activeTab === 'map' && (
               <div className={styles.section}>
                 <div className={styles.mapControls}>
-                  <button className="btn-accent" onClick={findNearestCourt}>
+                  <button className="btn-accent" onClick={() => findNearestPOI("court")} style={{ marginRight: '16px' }}>
                     <Navigation size={16} /> FIND NEAREST COURT
+                  </button>
+                  <button className="btn-outlined" onClick={() => findNearestPOI("police station")}>
+                    <Search size={16} /> FIND POLICE STATION
                   </button>
                 </div>
                 <div className={styles.mapContainer}>

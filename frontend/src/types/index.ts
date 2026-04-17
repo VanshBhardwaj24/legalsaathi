@@ -15,6 +15,7 @@ export interface Precedent {
 export interface TimelineEvent {
   title: string;
   cardTitle: string;
+  cardSubtitle?: string;
   cardDetailedText: string;
 }
 
@@ -23,6 +24,7 @@ export interface EvidenceItem {
   document: string;
   importance: 'High' | 'Medium' | 'Low';
   reason: string;
+  action_step?: string;
 }
 
 export interface AnalysisResult {
