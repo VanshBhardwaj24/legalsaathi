@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import {
   Copy, FileText, Search, Scale, FileSignature,
-  Clock, ClipboardList, Map as MapIcon,
-  Navigation, Circle, ExternalLink
+  Clock, ClipboardList,
+  Navigation, Circle, ExternalLink, Share2
 } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { motion, AnimatePresence } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import { Tooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css';
 import { Chrono } from "react-chrono";
+import html2pdf from 'html2pdf.js';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import styles from './ResultViewer.module.css';
@@ -26,26 +31,67 @@ L.Icon.Default.mergeOptions({
 
 interface ResultViewerProps {
   data: AnalysisResult;
+  shareUrl?: string;
 }
 
-// Component to handle map center updates
+const LEGAL_GLOSSARY: Record<string, string> = {
+  "FIR": "First Information Report: A document prepared by police organizations when they receive information about the commission of a cognizable offence.",
+  "Bail": "The temporary release of an accused person awaiting trial, sometimes on condition that a sum of money be lodged to guarantee their appearance in court.",
+  "Habeas Corpus": "A writ requiring a person under arrest to be brought before a judge or into court, especially to secure the person's release unless lawful grounds are shown for their detention.",
+  "Sub Judice": "Under judicial consideration and therefore prohibited from public discussion elsewhere.",
+  "Jurisdiction": "The official power to make legal decisions and judgments.",
+  "Cognizable": "An offense for which a police officer has the authority to make an arrest without a warrant.",
+  "Affidavit": "A written statement confirmed by oath or affirmation, for use as evidence in court.",
+};
+
+const enhanceTextWithGlossary = (text: string) => {
+  let enhancedText = text;
+  Object.entries(LEGAL_GLOSSARY).forEach(([term, definition]) => {
+    const regex = new RegExp(`\\b(${term})\\b(?![^<]*>)`, 'gi');
+    enhancedText = enhancedText.replace(regex, `<span data-tooltip-id="glossary" data-tooltip-content="${definition}" style="text-decoration: underline dotted var(--color-accent); cursor: help; font-weight: bold;">$1</span>`);
+  });
+  return enhancedText;
+};
+
 const ChangeView = ({ center }: { center: [number, number] }) => {
   const map = useMap();
   map.setView(center, 12);
   return null;
 };
 
-export const ResultViewer: React.FC<ResultViewerProps> = ({ data }) => {
+export const ResultViewer: React.FC<ResultViewerProps> = ({ data, shareUrl }) => {
   const [activeTab, setActiveTab] = useState<'summary' | 'ipc' | 'precedents' | 'chrono' | 'evidence' | 'map' | 'draft'>('summary');
   const [mapCenter, setMapCenter] = useState<[number, number]>([28.6139, 77.2090]); // New Delhi default
   const [foundCourts, setFoundCourts] = useState<any[]>([]);
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
+    toast.success('Copied to clipboard!');
+  };
+
+  const handleShare = () => {
+    if (shareUrl) {
+      navigator.clipboard.writeText(shareUrl);
+      toast.success('Share link copied to vault! 🔗');
+    }
+  };
+
+  const exportToPDF = () => {
+    const element = document.getElementById('printable-draft');
+    if (!element) return;
+
+    const opt = {
+      margin: 10,
+      filename: 'LegalSaathi_Draft.pdf',
+      image: { type: 'jpeg' as const, quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
+    };
+
+    html2pdf().set(opt).from(element).save();
   };
 
   const findNearestPOI = async (poiType: string) => {
-    // Determine jurisdiction fallback
     const queryLocation = data.structured?.jurisdiction || "New Delhi";
     try {
       const resp = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${poiType} in ${queryLocation}&addressdetails=1&limit=5`);
@@ -61,6 +107,7 @@ export const ResultViewer: React.FC<ResultViewerProps> = ({ data }) => {
 
   const tabs = [
     { id: 'summary', label: 'Summary', icon: <FileText size={18} /> },
+    // { id: 'history', label: 'Activities', icon: <Clock size={18} /> },
     { id: 'ipc', label: 'Codes', icon: <Search size={18} /> },
     { id: 'precedents', label: 'Cases', icon: <Scale size={18} /> },
     { id: 'chrono', label: 'Chronology', icon: <Clock size={18} /> },
@@ -202,6 +249,16 @@ export const ResultViewer: React.FC<ResultViewerProps> = ({ data }) => {
                     <div key={i} className={styles.card}>
                       <div className={styles.cardHeader}>
                         <span className={styles.badge}>{ipc.section}</span>
+                        {ipc.source_url && (
+                          <a
+                            href={ipc.source_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.75rem', color: 'var(--color-accent)' }}
+                          >
+                            IndiaCode Source <ExternalLink size={12} />
+                          </a>
+                        )}
                         <span>{ipc.chapter}</span>
                       </div>
                       <h4 className={styles.cardTitle}>{ipc.section_title}</h4>
@@ -234,18 +291,29 @@ export const ResultViewer: React.FC<ResultViewerProps> = ({ data }) => {
               <div className={styles.section}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
                   <h3>Magistrate's Draft</h3>
-                  <button className="btn-outlined" onClick={() => handleCopy(data.structured?.draft || "")}>
-                    <Copy size={16} /> Copy Text
-                  </button>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <button className="btn-outlined" onClick={() => handleCopy(data.structured?.draft || "")}>
+                      <Copy size={16} /> Copy Text
+                    </button>
+                    {shareUrl && (
+                      <button className="btn-outlined" onClick={handleShare}>
+                        <Share2 size={16} /> Share Link
+                      </button>
+                    )}
+                    <button className="btn-accent" onClick={exportToPDF}>
+                      <FileSignature size={16} /> Export PDF
+                    </button>
+                  </div>
                 </div>
-                <div className="glass-ui" style={{ padding: '40px', background: 'white', borderRadius: 'var(--radius-md)' }}>
-                  <ReactMarkdown>{data.structured?.draft || ""}</ReactMarkdown>
+                <div id="printable-draft" className="glass-ui" style={{ padding: '40px', background: 'white', borderRadius: 'var(--radius-md)' }}>
+                  <ReactMarkdown rehypePlugins={[rehypeRaw]}>{enhanceTextWithGlossary(data.structured?.draft || "")}</ReactMarkdown>
                 </div>
               </div>
             )}
           </motion.div>
         </AnimatePresence>
       </div>
+      <Tooltip id="glossary" style={{ backgroundColor: 'var(--color-primary)', color: 'white', maxWidth: '300px', zIndex: 9999 }} />
     </div>
   );
 };

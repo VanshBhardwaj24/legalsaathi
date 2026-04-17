@@ -8,6 +8,7 @@ import { runDrafter } from './agents/drafter.js';
 import { runEvidence } from './agents/evidence.js';
 import { runTimeline } from './agents/timeline.js';
 import { handleChat } from './agents/chat.js';
+import { fetchLegalNews } from './tools/newsScanner.js';
 
 dotenv.config();
 
@@ -23,22 +24,33 @@ app.get('/api/health', (req, res) => {
     res.json({ status: 'ok' });
 });
 
+app.get('/api/news', async (req, res) => {
+    try {
+        const news = await fetchLegalNews();
+        res.json(news);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch news' });
+    }
+});
+
 app.post('/api/analyze', async (req, res) => {
-    const { query } = req.body;
+    const { query, language = "English", document_type = "generic" } = req.body;
     if (!query) return res.status(400).json({ error: 'Query is required' });
 
-    console.log(`\n🚀 Starting analysis for: "${query}"`);
+    console.log(`\n🚀 Starting analysis for: "${query}" | Type: ${document_type} | Language: ${language}`);
 
     try {
+        const activities = [];
+
         // Step 1: Intake
         console.log('  → [1/4] Running intake agent...');
-        const intake = await runIntake(query);
-        console.log('  ✅ Intake complete:', JSON.stringify(intake).slice(0, 120));
+        const intake = await runIntake(query, language);
+        activities.push({ agent: 'Intake Agent', type: 'analysis', description: 'Analyzed user query and extracted case domain.' });
 
         // Step 2: IPC Search
         console.log('  → [2/4] Running IPC search...');
         const ipc = await runIPCSearch(intake);
-        console.log(`  ✅ IPC Search complete: ${ipc.length} sections found.`);
+        activities.push({ agent: 'Legal Search Agent', type: 'research', description: `Identified ${ipc.length} legal sections with authoritative links.` });
 
         // Stage 3: Research & Intelligence (Parallel)
         console.log('  → [3/4] Running advanced research agents...');
@@ -47,21 +59,17 @@ app.post('/api/analyze', async (req, res) => {
             runEvidence(intake, ipc),
             runTimeline(intake)
         ]);
-        console.log('  ✅ Advanced intelligence complete.');
+        activities.push({ agent: 'Research Agent', type: 'research', description: 'Extracted judicial precedents from high-court records.' });
+        activities.push({ agent: 'Intelligence Agent', type: 'analysis', description: 'Generated structured evidence checklist and chronology.' });
 
         // Stage 4: Drafting
         console.log('  → [4/4] Running drafter...');
-        const draft = await runDrafter(intake, ipc, precedent);
-        console.log('  ✅ Draft complete.');
+        const draft = await runDrafter(intake, ipc, precedent, document_type, language);
+        activities.push({ agent: 'Drafting Agent', type: 'drafting', description: `Generated a professional ${document_type} document.` });
 
         res.json({
             status: 'success',
-            intake,
-            ipc_sections: ipc,
-            precedents: precedent,
-            evidence_checklist: evidence,
-            timeline_data: timeline,
-            raw: draft,
+            activities,
             structured: {
                 ...intake,
                 ipc_sections: ipc,

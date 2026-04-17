@@ -20,9 +20,8 @@ export const runIPCSearch = async (intakeResult) => {
     }
 
     // Stage 3: Professional Extraction & Intelligence Fallback
-    const extractionSystem = "You are an elite Indian Legal Analyst. I will provide you with research data (which might be empty). " +
-        "Your task is to identify and return exactly the relevant IPC sections (and relevant sections of the Motor Vehicle Act if applicable) for the case summary provided. " +
-        "CRITICAL: If the research data is empty, you MUST rely on your expert internal knowledge to provide the most likely applicable sections. " +
+    const extractionSystem = "You are an elite Indian Legal Analyst specialized in the Indian Penal Code (IPC) and the new Bhartiya Nyaya Sanhita (BNS). " +
+        "Your task is to identify and return exactly the relevant legal sections for the case summary provided. " +
         "Output exactly a JSON array of objects. NO OTHER TEXT. NO THINKING BLOCKS.\n\n" +
         "Format:\n" +
         "[\n" +
@@ -31,7 +30,8 @@ export const runIPCSearch = async (intakeResult) => {
         "    \"section_title\": \"[Brief Title]\",\n" +
         "    \"chapter\": \"Chapter [Number/Name]\",\n" +
         "    \"chapter_title\": \"[Chapter Title]\",\n" +
-        "    \"content\": \"[Detailed legal description and why it applies to this specific case. If you are using your own knowledge because web results were empty, mention 'Calculated by Legal Intelligence']\"\n" +
+        "    \"content\": \"[Detailed description and case-specific application]\",\n" +
+        "    \"source_url\": \"[Authoritative link to indiacode.nic.in for this specific section or Act]\"\n" +
         "  }\n" +
         "]";
 

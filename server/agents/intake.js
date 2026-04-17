@@ -1,13 +1,14 @@
 import { generateText } from '../tools/llm.js';
 
-export const runIntake = async (userInput) => {
+export const runIntake = async (userInput, targetLanguage = "English") => {
     const text = await generateText({
         system: "You're a highly skilled legal intake assistant trained to analyze plain-English legal concerns. " +
                 "Identify the core legal issue, classify the legal domain (e.g., civil, criminal, labor), " +
                 "and return a structured JSON response. " +
                 "Response MUST be valid JSON only, no markdown fences, no explanation.",
         prompt: `The user has submitted the following legal query:\n\n"${userInput}"\n\n` +
-                `Return a JSON object with these exact keys: case_type, legal_domain, summary, relevant_entities, jurisdiction.`
+                `The user has requested the output to be strictly in this language: ${targetLanguage}.\n` +
+                `Return a JSON object with these exact keys: case_type, legal_domain, summary, relevant_entities, jurisdiction. Ensure the ALL values (especially 'summary', 'case_type', etc) are translated to ${targetLanguage}.`
     });
 
     try {

@@ -4,6 +4,7 @@ export interface IPCSection {
   chapter: string;
   chapter_title: string;
   content: string;
+  source_url?: string;
 }
 
 export interface Precedent {
@@ -27,9 +28,16 @@ export interface EvidenceItem {
   action_step?: string;
 }
 
+export interface AgentActivity {
+  agent: string;
+  type: 'research' | 'analysis' | 'drafting';
+  description: string;
+  metadata?: any;
+}
+
 export interface AnalysisResult {
   status: 'success' | 'error';
-  raw: string;
+  activities?: AgentActivity[];
   structured: {
     case_type?: string;
     legal_domain?: string;
