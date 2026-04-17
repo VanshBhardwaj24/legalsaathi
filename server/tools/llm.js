@@ -4,8 +4,9 @@
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 export const MODEL = 'qwen/qwen3-32b';
 
-export async function generateText({ system, prompt, apiKey }) {
+export async function generateText({ system, prompt, apiKey, model }) {
     const activeApiKey = apiKey || process.env.GROQ_API_KEY;
+    const activeModel = model || MODEL;
     
     if (!activeApiKey) {
         throw new Error('Groq API Key is missing. Check your .env file.');
@@ -18,7 +19,7 @@ export async function generateText({ system, prompt, apiKey }) {
             'Authorization': `Bearer ${activeApiKey}`
         },
         body: JSON.stringify({
-            model: MODEL,
+            model: activeModel,
             messages: [
                 { role: 'system', content: system },
                 { role: 'user', content: prompt }

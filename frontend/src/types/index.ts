@@ -12,6 +12,19 @@ export interface Precedent {
   link: string | null;
 }
 
+export interface TimelineEvent {
+  title: string;
+  cardTitle: string;
+  cardDetailedText: string;
+}
+
+export interface EvidenceItem {
+  category: string;
+  document: string;
+  importance: 'High' | 'Medium' | 'Low';
+  reason: string;
+}
+
 export interface AnalysisResult {
   status: 'success' | 'error';
   raw: string;
@@ -24,6 +37,8 @@ export interface AnalysisResult {
     ipc_sections?: IPCSection[];
     precedents?: Precedent[];
     precedents_summary?: string;
+    timeline_data?: TimelineEvent[];
+    evidence_checklist?: EvidenceItem[];
     draft?: string;
   } | null;
 }

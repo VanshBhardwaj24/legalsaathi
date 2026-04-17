@@ -3,7 +3,7 @@ import { searchPrecedents } from '../tools/tavilySearch.js';
 
 export const runPrecedent = async (intakeResult) => {
     const searchQuery = `${intakeResult.case_type || ''} ${intakeResult.legal_domain || ''} precedent cases India`;
-    const cases = await searchPrecedents(searchQuery.trim());
+    const cases = await searchPrecedents(searchQuery.trim(), process.env.TAVILY_API_KEY_2);
 
     if (cases.length === 0) {
         return {
@@ -20,7 +20,8 @@ export const runPrecedent = async (intakeResult) => {
 
     const summary = await generateText({
         system: "You are an expert Indian legal researcher. Summarize the following case precedents in a single cohesive paragraph explaining their legal importance and relevance.",
-        prompt: JSON.stringify(trimmedCases).substring(0, 6000)
+        prompt: JSON.stringify(trimmedCases).substring(0, 6000),
+        apiKey: process.env.GROQ_API_KEY_2
     });
 
     return { summary, cases };

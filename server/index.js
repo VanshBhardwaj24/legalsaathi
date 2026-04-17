@@ -5,6 +5,9 @@ import { runIntake } from './agents/intake.js';
 import { runIPCSearch } from './agents/ipcSearch.js';
 import { runPrecedent } from './agents/precedent.js';
 import { runDrafter } from './agents/drafter.js';
+import { runEvidence } from './agents/evidence.js';
+import { runTimeline } from './agents/timeline.js';
+import { handleChat } from './agents/chat.js';
 
 dotenv.config();
 
@@ -37,12 +40,16 @@ app.post('/api/analyze', async (req, res) => {
         const ipc = await runIPCSearch(intake);
         console.log(`  ✅ IPC Search complete: ${ipc.length} sections found.`);
 
-        // Step 3: Precedent Search
-        console.log('  → [3/4] Running precedent search...');
-        const precedent = await runPrecedent(intake);
-        console.log('  ✅ Precedent search complete.');
+        // Stage 3: Research & Intelligence (Parallel)
+        console.log('  → [3/4] Running advanced research agents...');
+        const [precedent, evidence, timeline] = await Promise.all([
+            runPrecedent(intake),
+            runEvidence(intake, ipc),
+            runTimeline(intake)
+        ]);
+        console.log('  ✅ Advanced intelligence complete.');
 
-        // Step 4: Drafting
+        // Stage 4: Drafting
         console.log('  → [4/4] Running drafter...');
         const draft = await runDrafter(intake, ipc, precedent);
         console.log('  ✅ Draft complete.');
@@ -52,24 +59,36 @@ app.post('/api/analyze', async (req, res) => {
             intake,
             ipc_sections: ipc,
             precedents: precedent,
+            evidence_checklist: evidence,
+            timeline_data: timeline,
             raw: draft,
             structured: {
                 ...intake,
                 ipc_sections: ipc,
                 precedents: precedent.cases,
                 precedents_summary: precedent.summary,
+                evidence_checklist: evidence,
+                timeline_data: timeline,
                 draft
             }
         });
     } catch (error) {
         console.error('\n❌ Analysis failed!');
         console.error('   Message:', error.message);
-        console.error('   Stack:', error.stack);
-        res.status(500).json({
-            status: 'error',
-            message: error.message,
-            hint: 'Check the server terminal for more details.'
-        });
+        res.status(500).json({ status: 'error', message: error.message });
+    }
+});
+
+app.post('/api/chat', async (req, res) => {
+    const { message, context } = req.body;
+    if (!message || !context) return res.status(400).json({ error: 'Message and context required' });
+
+    try {
+        const response = await handleChat(message, context);
+        res.json({ response });
+    } catch (error) {
+        console.error('❌ Chat failed:', error);
+        res.status(500).json({ status: 'error', message: error.message });
     }
 });
 

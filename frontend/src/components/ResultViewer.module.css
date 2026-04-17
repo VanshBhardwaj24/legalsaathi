@@ -252,3 +252,95 @@
   color: var(--color-text-muted);
 }
 
+/* Advanced Module Visualizations */
+
+.evidenceChecklist {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.evidenceItem {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+  background: var(--color-white);
+  border: 1px solid var(--color-neutral-dark);
+  border-radius: var(--radius-md);
+  transition: all 0.3s ease;
+}
+
+[data-theme='dark'] .evidenceItem {
+  background: rgba(30, 41, 59, 0.4);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.evidenceStatus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--color-neutral-dark);
+  color: var(--color-neutral-dark);
+  cursor: pointer;
+  background: none;
+}
+
+.itemHigh { border-left: 4px solid #ef4444; }
+.itemMedium { border-left: 4px solid #f59e0b; }
+.itemLow { border-left: 4px solid #10b981; }
+
+.evidenceInfo {
+  flex: 1;
+}
+
+.evidenceInfo h4 {
+  font-family: var(--font-headline);
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.evidenceInfo p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.evidenceImportance {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.impHigh { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+.impMedium { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+.impLow { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+
+/* Timeline Overrides */
+.timelineContainer {
+  margin-top: 32px;
+  background: transparent !important;
+}
+
+/* Mapping */
+.mapContainer {
+  height: 500px;
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-neutral-dark);
+  margin-top: 24px;
+}
+
+.mapControls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+

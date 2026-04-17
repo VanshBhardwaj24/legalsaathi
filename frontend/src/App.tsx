@@ -8,6 +8,7 @@ import { StatsBar } from './components/StatsBar';
 import { AnalysisForm } from './components/AnalysisForm';
 import { AgentProgress } from './components/AgentProgress';
 import { ResultViewer } from './components/ResultViewer';
+import { ChatPanel } from './components/ChatPanel';
 import { useAnalysis } from './hooks/useAnalysis';
 import { ThemeProvider } from './context/ThemeContext';
 
@@ -106,6 +107,7 @@ export const App: React.FC = () => {
                   transition={{ type: 'spring', damping: 20 }}
                 >
                   <ResultViewer data={result} />
+                  <ChatPanel context={result} />
                 </motion.div>
               )}
             </AnimatePresence>
