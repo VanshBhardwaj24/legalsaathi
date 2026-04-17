@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, Copy, Check, Download, Info, ChevronDown } from 'lucide-react';
+import { FileText, Copy, Check, Info, ChevronDown } from 'lucide-react';
 import styles from './Intelligence.module.css';
 
 const BLUEPRINTS = [

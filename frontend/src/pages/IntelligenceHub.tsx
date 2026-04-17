@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Newspaper, Book, Clock, Search, Gavel, 
   AlertCircle, RefreshCw, ShieldCheck, Info,
-  Camera, ArrowLeft, FileText, ExternalLink
+  Camera, ArrowLeft
 } from 'lucide-react';
 import { NewsCard } from '../components/Intelligence/NewsCard';
 import { GlossaryItem } from '../components/Intelligence/GlossaryItem';
