@@ -185,171 +185,346 @@
   font-weight: 800;
 }
 
-/* Citizens Rights & Literacy */
-.newsGrid, .literacyGrid {
+/* 2.0 Layout Architecture */
+.hubLayout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+@media (max-width: 900px) {
+  .hubLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Category Sidebar */
+.categorySidebar {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 20px;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+}
+
+.sidebarTitle {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.4;
+  margin-bottom: 20px;
+  padding-left: 12px;
+}
+
+.sidebarList {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 8px;
 }
 
-.literacyCard {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.literacyCard.expanded {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: var(--color-accent);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-}
-
-.cardHeader {
-  padding: 24px;
+.sidebarItem {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
   cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  text-align: left;
 }
 
-.iconCircle {
-  width: 48px;
-  height: 48px;
+.sidebarItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sidebarItem.active {
   background: rgba(59, 130, 246, 0.1);
-  border-radius: 12px;
+  color: var(--color-accent);
+}
+
+.sidebarIcon {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-accent);
 }
 
-.categoryBadge {
-  font-size: 0.75rem;
-  background: rgba(59, 130, 246, 0.15);
-  color: #60A5FA;
-  padding: 4px 12px;
-  border-radius: 100px;
-  text-transform: uppercase;
-  font-weight: 700;
-  margin-bottom: 8px;
-  display: inline-block;
+.sidebarItem.active .sidebarIcon {
+  background: rgba(59, 130, 246, 0.2);
 }
 
-.cardTitle {
-  margin: 0 0 4px 0;
-  font-size: 1.35rem;
-  font-weight: 700;
-}
-
-.cardSummary {
-  margin: 0;
-  font-size: 0.95rem;
-  opacity: 0.6;
-}
-
-.expandedContent {
-  padding: 0 24px 24px 24px;
-}
-
-.markdownBody {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--color-text);
-  padding-bottom: 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.markdownBody h3, .markdownBody h4 {
-  color: var(--color-accent);
-  margin: 24px 0 12px 0;
-}
-
-.mythSection {
-  margin-top: 24px;
-  padding: 24px;
-  background: rgba(16, 185, 129, 0.05);
-  border-radius: 20px;
-  border: 1px solid rgba(16, 185, 129, 0.1);
-}
-
-.mythItem {
-  margin-top: 16px;
-  font-size: 0.95rem;
-}
-
-.templateSection {
-  margin-top: 24px;
-}
-
-.templateItem {
+/* Violation Checker UI */
+.checkerHero {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(129, 140, 248, 0.05) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 24px;
+  padding: 32px;
+  margin-bottom: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
-  margin-top: 12px;
+  gap: 40px;
 }
 
-.templateItem button {
-  background: transparent;
-  border: 1px solid var(--color-accent);
-  color: var(--color-accent);
+@media (max-width: 800px) {
+  .checkerHero {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.heroInfo h2 {
+  margin: 0 0 8px 0;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-size: 0.85rem;
+  gap: 12px;
+}
+
+.heroInfo p {
+  opacity: 0.7;
+  max-width: 500px;
+  margin: 0;
+}
+
+.scenarioGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  min-width: 300px;
+}
+
+.scenarioBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px 20px;
+  border-radius: 12px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-weight: 600;
   transition: all 0.2s;
 }
 
-.templateItem button:hover {
+.scenarioBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-accent);
+  transform: translateX(8px);
+}
+
+.checkerActive {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-accent);
+  border-radius: 24px;
+  padding: 32px;
+  margin-bottom: 40px;
+}
+
+.checkerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stepIndicator {
+  font-size: 0.85rem;
+  opacity: 0.5;
+  font-weight: 600;
+}
+
+.questionText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.optionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.optionBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 16px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.optionBtn:hover {
   background: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+}
+
+.resultsCard {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.resultsHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.resultsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.resultItem {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  padding: 16px;
+  border-radius: 12px;
+  color: #FBBF24;
+  font-weight: 500;
+  text-align: left;
+}
+
+.successMsg {
+  color: #34D399;
+  font-size: 1.1rem;
+}
+
+.resetBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-text-muted);
+  padding: 10px 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto;
+  transition: all 0.2s;
+}
+
+.resetBtn:hover {
+  border-color: white;
   color: white;
 }
 
-/* Highlight Cards */
-.highlightCard {
-  padding: 24px;
-  border-radius: 24px;
-  margin-bottom: 24px;
-  border: 1px solid transparent;
-}
-
-.highlightHeader {
+/* Screenshot Mode */
+.captureBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-accent);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-  font-weight: 700;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.captureBtn:hover {
+  background: var(--color-accent);
+  color: white;
+  transform: scale(1.1);
+}
+
+.screenshotView {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #0F172A;
+  z-index: 9999;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.backBtn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.screenshotContent {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.screenshotHeader h1 {
+  margin: 16px 0 8px 0;
+  font-size: 2.5rem;
+}
+
+.screenshotGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 40px 0;
+}
+
+.miniGuide {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 24px;
+  border-radius: 20px;
+  text-align: left;
+}
+
+.miniGuide h4 {
+  color: var(--color-accent);
+  margin: 0 0 8px 0;
+}
+
+.miniGuide p {
   font-size: 0.9rem;
-  text-transform: uppercase;
-}
-
-.highlightContent {
+  opacity: 0.7;
   margin: 0;
-  font-size: 1rem;
-  line-height: 1.5;
-  opacity: 0.9;
 }
 
-.fact {
-  background: rgba(251, 191, 36, 0.05);
-  border-color: rgba(251, 191, 36, 0.1);
+.screenshotFooter {
+  opacity: 0.3;
+  font-size: 0.8rem;
+  margin-top: 40px;
 }
 
-.myth {
-  background: rgba(248, 113, 113, 0.05);
-  border-color: rgba(248, 113, 113, 0.1);
-}
-
-.pro-tip {
-  background: rgba(129, 140, 248, 0.05);
-  border-color: rgba(129, 140, 248, 0.1);
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 60px;
+  opacity: 0.5;
 }
 
 .searchBar {
