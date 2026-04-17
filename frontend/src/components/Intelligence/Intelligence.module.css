@@ -185,6 +185,173 @@
   font-weight: 800;
 }
 
+/* Citizens Rights & Literacy */
+.newsGrid, .literacyGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.literacyCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.literacyCard.expanded {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-accent);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.cardHeader {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.iconCircle {
+  width: 48px;
+  height: 48px;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+}
+
+.categoryBadge {
+  font-size: 0.75rem;
+  background: rgba(59, 130, 246, 0.15);
+  color: #60A5FA;
+  padding: 4px 12px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.cardTitle {
+  margin: 0 0 4px 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.cardSummary {
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.6;
+}
+
+.expandedContent {
+  padding: 0 24px 24px 24px;
+}
+
+.markdownBody {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.markdownBody h3, .markdownBody h4 {
+  color: var(--color-accent);
+  margin: 24px 0 12px 0;
+}
+
+.mythSection {
+  margin-top: 24px;
+  padding: 24px;
+  background: rgba(16, 185, 129, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+.mythItem {
+  margin-top: 16px;
+  font-size: 0.95rem;
+}
+
+.templateSection {
+  margin-top: 24px;
+}
+
+.templateItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  margin-top: 12px;
+}
+
+.templateItem button {
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.templateItem button:hover {
+  background: var(--color-accent);
+  color: white;
+}
+
+/* Highlight Cards */
+.highlightCard {
+  padding: 24px;
+  border-radius: 24px;
+  margin-bottom: 24px;
+  border: 1px solid transparent;
+}
+
+.highlightHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.highlightContent {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.fact {
+  background: rgba(251, 191, 36, 0.05);
+  border-color: rgba(251, 191, 36, 0.1);
+}
+
+.myth {
+  background: rgba(248, 113, 113, 0.05);
+  border-color: rgba(248, 113, 113, 0.1);
+}
+
+.pro-tip {
+  background: rgba(129, 140, 248, 0.05);
+  border-color: rgba(129, 140, 248, 0.1);
+}
+
 .searchBar {
   width: 100%;
   padding: 16px 24px;
