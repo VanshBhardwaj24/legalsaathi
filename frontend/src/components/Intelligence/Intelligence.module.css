@@ -527,6 +527,258 @@
   opacity: 0.5;
 }
 
+/* Legal Blueprint Styles */
+.blueprintContainer {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 28px;
+  padding: 32px;
+  margin-top: 40px;
+}
+
+.headerTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.accentIcon {
+  color: var(--color-accent);
+}
+
+.blueprintPicker {
+  display: flex;
+  gap: 12px;
+  margin: 24px 0;
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+
+.pickerBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 20px;
+  border-radius: 12px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.pickerBtn.active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.blueprintWorkspace {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.blueprintEditor {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 32px;
+}
+
+@media (max-width: 1000px) {
+  .blueprintEditor {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fieldGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputGroup label {
+  display: block;
+  font-size: 0.85rem;
+  opacity: 0.6;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.inputGroup input:focus {
+  border-color: var(--color-accent);
+  outline: none;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.previewBox {
+  background: #020617;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.previewHeader {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.previewHeader span {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.5;
+}
+
+.copyBtn {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  color: var(--color-accent);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.copyBtn:hover {
+  background: var(--color-accent);
+  color: white;
+}
+
+.previewText {
+  padding: 24px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  color: #CBD5E1;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.blueprintNotice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(59, 130, 246, 0.05);
+  border-radius: 12px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* Resource Directory Styles */
+.directoryContainer {
+  margin-top: 60px;
+}
+
+.categoryGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 32px;
+}
+
+.groupLabel {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.groupLabel::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.linkGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.resourceCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 24px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.resourceCard:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-accent);
+  transform: translateY(-4px);
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.linkIcon {
+  color: var(--color-accent);
+}
+
+.externalArrow {
+  opacity: 0.3;
+}
+
+.resourceCard h5 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  color: white;
+}
+
+.resourceCard p {
+  font-size: 0.85rem;
+  opacity: 0.6;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Reading Progress */
+.progressContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 10001;
+}
+
+.progressBar {
+  height: 100%;
+  background: var(--color-accent);
+  transition: width 0.1s;
+}
+
 .searchBar {
   width: 100%;
   padding: 16px 24px;
