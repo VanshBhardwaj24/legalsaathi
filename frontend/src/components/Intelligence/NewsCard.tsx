@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ExternalLink, Clock, Newspaper } from 'lucide-react';
 import styles from './Intelligence.module.css';
 
@@ -39,4 +40,3 @@ export const NewsCard: React.FC<NewsCardProps> = ({ title, source, date, link, s
     </motion.div>
   );
 };
-import { motion } from 'framer-motion';

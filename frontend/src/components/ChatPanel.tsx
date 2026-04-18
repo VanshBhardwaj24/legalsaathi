@@ -5,6 +5,7 @@ import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import styles from './ChatPanel.module.css';
 import type { AnalysisResult } from '../types/index';
+import { CONFIG } from '../config';
 
 interface ChatPanelProps {
   context: AnalysisResult;
@@ -25,7 +26,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({ context }) => {
     setIsLoading(true);
 
     try {
-      const resp = await axios.post('http://localhost:3004/api/chat', {
+      const resp = await axios.post(`${CONFIG.API_URL}/api/chat`, {
         message: userMsg,
         context: context
       });

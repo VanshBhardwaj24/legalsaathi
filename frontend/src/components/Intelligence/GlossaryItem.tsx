@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './Intelligence.module.css';
 
 interface GlossaryItemProps {
