@@ -25,8 +25,8 @@ export const App: React.FC = () => {
   return (
     <ThemeProvider>
       <div className="app">
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '4px', background: 'rgba(255, 255, 255, 0.05)', zIndex: 10001 }}>
-          <div style={{ height: '100%', background: 'var(--color-accent)', width: `${scrollProgress}%`, transition: 'width 0.1s' }} />
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '4px', background: 'var(--color-border-subtle)', backdropFilter: 'blur(4px)', zIndex: 10001 }}>
+          <div style={{ height: '100%', background: 'var(--grad-vibrant)', width: `${scrollProgress}%`, transition: 'width 0.1s cubic-bezier(0.1, 0.7, 0.1, 1)' }} />
         </div>
         <Header />
 

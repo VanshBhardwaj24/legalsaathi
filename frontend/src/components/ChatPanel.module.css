@@ -4,23 +4,18 @@
   right: 0;
   width: 450px;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--color-glass-bg);
   backdrop-filter: blur(25px);
   box-shadow: -20px 0 50px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  border-left: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-[data-theme='dark'] .panel {
-  background: rgba(15, 23, 42, 0.85);
-  border-left-color: rgba(255, 255, 255, 0.05);
+  border-left: 1px solid var(--color-border);
 }
 
 .header {
   padding: 32px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -52,31 +47,27 @@
 
 .aiMessage {
   align-self: flex-start;
-  background: var(--color-white);
-  border: 1px solid var(--color-neutral-dark);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   color: var(--color-text);
   border-bottom-left-radius: 4px;
 }
 
-[data-theme='dark'] .aiMessage {
-  background: rgba(30, 41, 59, 0.6);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
 .inputArea {
   padding: 32px;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid var(--color-border);
   display: flex;
   gap: 12px;
 }
 
 .inputArea input {
   flex: 1;
-  background: var(--color-white);
-  border: 1px solid var(--color-neutral-dark);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 12px 20px;
   font-size: 0.95rem;
+  color: var(--color-text);
   outline: none;
   transition: border-color 0.3s ease;
 }
@@ -135,18 +126,15 @@
   font-family: var(--font-headline);
 }
 
-[data-theme='dark'] .markdown h1, 
-[data-theme='dark'] .markdown h2, 
-[data-theme='dark'] .markdown h3, 
-[data-theme='dark'] .markdown h4 {
-  color: var(--color-accent-vibrant);
-}
-
 .markdown strong {
   font-weight: 700;
   color: var(--color-primary);
 }
 
+[data-theme='dark'] .markdown h1, 
+[data-theme='dark'] .markdown h2, 
+[data-theme='dark'] .markdown h3, 
+[data-theme='dark'] .markdown h4,
 [data-theme='dark'] .markdown strong {
   color: var(--color-accent-vibrant);
 }

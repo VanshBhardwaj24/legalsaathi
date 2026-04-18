@@ -1,16 +1,10 @@
 .wrapper {
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
   border-radius: var(--radius-md);
   padding: 32px;
   box-shadow: var(--shadow-sm);
   margin-top: 32px;
-  border: 1px solid var(--color-neutral-dark);
-}
-
-[data-theme='dark'] .wrapper {
-  background-color: rgba(30, 41, 59, 0.4);
-  backdrop-filter: blur(20px);
-  border-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
 }
 
 .title {
@@ -43,8 +37,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-neutral);
-  border: 2px solid var(--color-neutral-dark);
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
   color: var(--color-text-muted);
   font-weight: 600;
   transition: all 0.3s ease;
@@ -59,7 +53,7 @@
 .line {
   flex-grow: 1;
   height: 2px;
-  background-color: var(--color-neutral-dark);
+  background-color: var(--color-border);
   margin: 0 16px;
   transform: translateY(-16px);
   z-index: 1;

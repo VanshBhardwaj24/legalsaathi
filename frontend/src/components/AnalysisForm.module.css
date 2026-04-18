@@ -1,17 +1,11 @@
 .wrapper {
-  background-color: var(--color-white);
+  background-color: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: 40px;
   box-shadow: var(--shadow-md);
   max-width: 800px;
   margin: 0 auto;
-  border: 1px solid var(--color-neutral-dark);
-}
-
-[data-theme='dark'] .wrapper {
-  background-color: rgba(30, 41, 59, 0.4);
-  backdrop-filter: blur(20px);
-  border-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
 }
 
 .exampleChips {
@@ -36,7 +30,7 @@
   min-height: 200px;
   padding: 24px;
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-neutral-dark);
+  border: 1px solid var(--color-border);
   background-color: var(--color-neutral);
   font-family: var(--font-body);
   font-size: 16px;
@@ -47,13 +41,9 @@
 
 .textarea:focus {
   outline: none;
-  border-color: var(--color-tertiary);
-  background-color: var(--color-white);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-tertiary) 20%, transparent);
-}
-
-[data-theme='dark'] .textarea:focus {
-  background-color: rgba(15, 23, 42, 0.8);
+  border-color: var(--color-accent-vibrant);
+  background-color: var(--color-surface);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent-vibrant) 15%, transparent);
 }
 
 .textarea:disabled {
