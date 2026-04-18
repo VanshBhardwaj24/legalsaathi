@@ -1,13 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'public-anon-key';
 
 // Security: Validate env vars at startup so missing config is caught early.
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error(
+if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
+  console.error(
     '[LegalSaathi] Missing Supabase environment variables. ' +
-    'Ensure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set in frontend/.env'
+    'Ensure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set in your environment (e.g., .env or Vercel dashboard). ' +
+    'Database and Authentication will not function properly.'
   );
 }
 
