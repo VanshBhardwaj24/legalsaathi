@@ -19,21 +19,25 @@ export const Home: React.FC = () => {
     <main>
       <Hero />
       
-      <section className="features-section" style={{ padding: '100px 24px', maxWidth: '1300px', margin: '0 auto' }}>
+      <section className="features-section" style={{ padding: 'var(--section-padding) var(--container-padding)', maxWidth: '1300px', margin: '0 auto' }}>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          style={{ textAlign: 'center', marginBottom: '60px' }}
+          style={{ textAlign: 'center', marginBottom: 'clamp(40px, 8vw, 60px)' }}
         >
-          <h2 style={{ fontSize: '3rem', marginBottom: '20px' }}>Justice, Automated.</h2>
-          <p style={{ color: 'var(--color-text-muted)', fontSize: '1.25rem', maxWidth: '700px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: 'clamp(2rem, 8vw, 3.5rem)', marginBottom: '20px', lineHeight: 1.1 }}>Justice, Automated.</h2>
+          <p style={{ color: 'var(--color-text-muted)', fontSize: 'clamp(1rem, 4vw, 1.25rem)', maxWidth: '700px', margin: '0 auto' }}>
             LegalSaathi leverages a sophisticated multi-agent orchestration to provide precise, 
             legally-sound assistance for the Indian legal framework.
           </p>
         </motion.div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '32px' }}>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))', 
+          gap: 'clamp(16px, 4vw, 32px)' 
+        }}>
           <FeatureCard 
             icon={Landmark} 
             title="Indian Law Compliant" 
@@ -57,13 +61,13 @@ export const Home: React.FC = () => {
 
       <StatsBar />
 
-      <section id="analyze" style={{ padding: '120px 24px', position: 'relative', overflow: 'hidden' }}>
+      <section id="analyze" style={{ padding: 'var(--section-padding) var(--container-padding)', position: 'relative', overflow: 'hidden' }}>
         <div style={{ 
           position: 'absolute', 
           top: '10%', 
           right: '-10%', 
-          width: '500px', 
-          height: '500px', 
+          width: 'clamp(300px, 50vw, 500px)', 
+          height: 'clamp(300px, 50vw, 500px)', 
           background: 'radial-gradient(circle, rgba(124, 58, 237, 0.05) 0%, transparent 70%)',
           pointerEvents: 'none'
         }} />
@@ -75,9 +79,9 @@ export const Home: React.FC = () => {
               fontWeight: '800', 
               textTransform: 'uppercase', 
               letterSpacing: '2px',
-              fontSize: '0.875rem'
+              fontSize: '0.75rem'
             }}>AI Legal Analysis</span>
-            <h2 style={{ fontSize: '2.5rem', marginTop: '12px' }}>Consult the Modern Magistrate</h2>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 6vw, 2.5rem)', marginTop: '12px' }}>Consult the Modern Magistrate</h2>
           </div>
           
           <AnalysisForm onSubmit={analyze} loading={loading} />
@@ -112,9 +116,9 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
-      <footer style={{ background: 'var(--grad-premium)', color: 'white', padding: '100px 24px', textAlign: 'center' }}>
-         <h2 style={{ color: 'white', fontSize: '2.5rem', marginBottom: '24px' }}>Ready to draft your petition?</h2>
-         <p style={{ marginBottom: '40px', opacity: 0.7, fontSize: '1.25rem' }}>Experience the precision of AI-driven legal sovereignty.</p>
+      <footer style={{ background: 'var(--grad-premium)', color: 'white', padding: 'var(--section-padding) var(--container-padding)', textAlign: 'center' }}>
+         <h2 style={{ color: 'white', fontSize: 'clamp(1.75rem, 6vw, 2.5rem)', marginBottom: '24px' }}>Ready to draft your petition?</h2>
+         <p style={{ marginBottom: '40px', opacity: 0.7, fontSize: 'clamp(1rem, 4vw, 1.25rem)' }}>Experience the precision of AI-driven legal sovereignty.</p>
          <button className="btn-accent" onClick={() => document.getElementById('query')?.focus()}>
            INITIATE FIRST CASE
          </button>

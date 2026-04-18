@@ -47,12 +47,12 @@ export const Dashboard: React.FC = () => {
 
   const deleteCase = async (id: string) => {
     if (!confirm('Are you sure you want to delete this case permanently?')) return;
-    
+
     const toastId = toast.loading('Deleting case...');
     try {
       const { error } = await supabase.from('cases').delete().eq('id', id);
       if (error) throw error;
-      
+
       setCases(prev => prev.filter(c => c.id !== id));
       toast.success('Case deleted.', { id: toastId });
     } catch (err: any) {
@@ -100,10 +100,10 @@ export const Dashboard: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
               className="glass-ui"
-              style={{ 
-                padding: '24px', 
-                display: 'flex', 
-                justifyContent: 'space-between', 
+              style={{
+                padding: '24px',
+                display: 'flex',
+                justifyContent: 'space-between',
                 alignItems: 'center',
                 cursor: 'pointer',
                 transition: 'transform 0.2s'
@@ -123,9 +123,9 @@ export const Dashboard: React.FC = () => {
               </div>
 
               <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                <button 
+                <button
                   onClick={(e) => { e.stopPropagation(); deleteCase(c.id); }}
-                  className="btn-outlined" 
+                  className="btn-outlined"
                   style={{ padding: '8px', border: 'none', color: 'var(--color-error)' }}
                   title="Delete case"
                 >

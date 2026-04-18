@@ -1,16 +1,16 @@
 .hubWrapper {
-  padding: 40px;
+  padding: var(--section-padding) var(--container-padding);
   max-width: 1400px;
   margin: 0 auto;
 }
 
 .hubHeader {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: clamp(40px, 8vw, 60px);
 }
 
 .hubHeader h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 8vw, 3.5rem);
   font-weight: 800;
   margin-bottom: 16px;
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
@@ -19,14 +19,14 @@
 }
 
 .hubHeader p {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 4vw, 1.25rem);
   color: var(--color-text-muted);
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr 380px;
-  gap: 40px;
+  gap: clamp(24px, 5vw, 40px);
 }
 
 @media (max-width: 1100px) {
@@ -37,11 +37,11 @@
 
 /* Sections */
 .section {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--color-surface);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
   border-radius: 24px;
-  padding: 32px;
+  padding: clamp(20px, 5vw, 32px);
   height: fit-content;
 }
 
@@ -50,10 +50,12 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .sectionHeader h2 {
-  font-size: 1.75rem;
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -61,17 +63,17 @@
 
 /* News Cards */
 .newsCard {
-  background: var(--color-bg-alt);
+  background: var(--color-surface);
   border-radius: 20px;
-  padding: 24px;
+  padding: clamp(16px, 4vw, 24px);
   margin-bottom: 20px;
-  border: 1px solid transparent;
+  border: 1px solid var(--color-border);
   transition: all 0.3s ease;
 }
 
 .newsCard:hover {
   border-color: var(--color-accent);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-md);
 }
 
 .newsHeader {
@@ -80,6 +82,7 @@
   margin-bottom: 12px;
   font-size: 0.8rem;
   opacity: 0.6;
+  flex-wrap: wrap;
 }
 
 .newsSource, .newsDate {
@@ -89,7 +92,7 @@
 }
 
 .newsTitle {
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 4vw, 1.25rem);
   margin-bottom: 12px;
   line-height: 1.4;
 }
@@ -118,43 +121,46 @@
 }
 
 .glossaryItem {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 16px;
   padding: 16px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .glossaryItem:hover {
-  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-accent);
 }
 
 /* Procedures & Tables */
 .tableContainer {
   overflow-x: auto;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-border);
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 500px;
 }
 
 .table th, .table td {
   padding: 16px;
   text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .table th {
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--color-surface-hover);
   font-weight: 600;
   color: var(--color-accent);
 }
 
 .procedureCard {
-  background: var(--color-bg-alt);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 20px;
   padding: 24px;
   margin-bottom: 24px;
@@ -201,13 +207,19 @@
 
 /* Category Sidebar */
 .categorySidebar {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 20px;
   padding: 20px;
   height: fit-content;
   position: sticky;
-  top: 100px;
+  top: calc(var(--header-height) + 20px);
+}
+
+@media (max-width: 900px) {
+  .categorySidebar {
+    position: static;
+  }
 }
 
 .sidebarTitle {
@@ -265,15 +277,15 @@
 
 /* Violation Checker UI */
 .checkerHero {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(129, 140, 248, 0.05) 100%);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-accent-vibrant) 10%, transparent) 0%, rgba(129, 140, 248, 0.05) 100%);
+  border: 1px solid color-mix(in srgb, var(--color-accent-vibrant) 20%, transparent);
   border-radius: 24px;
-  padding: 32px;
+  padding: clamp(24px, 5vw, 32px);
   margin-bottom: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 40px;
+  gap: clamp(24px, 5vw, 40px);
 }
 
 @media (max-width: 800px) {
@@ -288,27 +300,36 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
+}
+
+@media (max-width: 800px) {
+  .heroInfo h2 {
+    justify-content: center;
+  }
 }
 
 .heroInfo p {
   opacity: 0.7;
   max-width: 500px;
   margin: 0;
+  font-size: clamp(0.9rem, 3vw, 1rem);
 }
 
 .scenarioGrid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 12px;
-  min-width: 300px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .scenarioBtn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   padding: 16px 20px;
   border-radius: 12px;
-  color: white;
+  color: var(--color-text);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -317,16 +338,16 @@
 }
 
 .scenarioBtn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-surface-hover);
   border-color: var(--color-accent);
   transform: translateX(8px);
 }
 
 .checkerActive {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--color-surface);
   border: 1px solid var(--color-accent);
   border-radius: 24px;
-  padding: 32px;
+  padding: clamp(20px, 5vw, 32px);
   margin-bottom: 40px;
 }
 
@@ -336,7 +357,9 @@
   align-items: center;
   margin-bottom: 32px;
   padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--color-border);
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .stepIndicator {
@@ -346,23 +369,23 @@
 }
 
 .questionText {
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 5vw, 1.5rem);
   font-weight: 700;
   margin-bottom: 32px;
 }
 
 .optionGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
   gap: 16px;
 }
 
 .optionBtn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   padding: 20px;
   border-radius: 16px;
-  color: white;
+  color: var(--color-text);
   font-size: 1.1rem;
   font-weight: 600;
   transition: all 0.2s;
@@ -371,6 +394,7 @@
 .optionBtn:hover {
   background: var(--color-accent);
   border-color: var(--color-accent);
+  color: white;
   box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
 }
 
@@ -529,10 +553,10 @@
 
 /* Legal Blueprint Styles */
 .blueprintContainer {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 28px;
-  padding: 32px;
+  padding: clamp(20px, 5vw, 32px);
   margin-top: 40px;
 }
 
@@ -553,14 +577,15 @@
   margin: 24px 0;
   overflow-x: auto;
   padding-bottom: 12px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .pickerBtn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   padding: 12px 20px;
   border-radius: 12px;
-  color: white;
+  color: var(--color-text);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -571,6 +596,7 @@
 .pickerBtn.active {
   background: var(--color-accent);
   border-color: var(--color-accent);
+  color: white;
 }
 
 .blueprintWorkspace {

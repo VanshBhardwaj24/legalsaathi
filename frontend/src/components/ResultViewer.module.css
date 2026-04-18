@@ -21,10 +21,18 @@
   padding: 8px;
   gap: 8px;
   border-bottom: 1px solid var(--color-border);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .tab {
   flex: 1;
+  min-width: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,6 +45,7 @@
   color: var(--color-text-muted);
   border-radius: var(--radius-md);
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .tab:hover {
@@ -51,11 +60,11 @@
 }
 
 .content {
-  padding: 48px;
+  padding: clamp(20px, 5vw, 48px);
 }
 
 .section h3 {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
   margin-bottom: 32px;
   color: var(--color-primary);
   display: flex;

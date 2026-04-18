@@ -114,7 +114,7 @@ export default function IntelligenceHub() {
         <p>Expert-level insights, citizens' rights, and real-time legal intelligence.</p>
       </header>
 
-      <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', marginBottom: '40px', flexWrap: 'wrap' }}>
+      <div className={styles.tabContainer} style={{ display: 'flex', gap: '8px', justifyContent: 'center', marginBottom: '40px', flexWrap: 'wrap', padding: '0 var(--container-padding)' }}>
         {[
           { id: 'news', label: 'News Wire', icon: <Newspaper size={18} /> },
           { id: 'rights', label: 'Combat Kit', icon: <ShieldCheck size={18} /> },
@@ -129,9 +129,17 @@ export default function IntelligenceHub() {
               setSearchQuery('');
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 20px', borderRadius: '12px', fontSize: '0.9rem' }}
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '8px', 
+              padding: 'clamp(8px, 2vw, 10px) clamp(12px, 3vw, 20px)', 
+              borderRadius: '12px', 
+              fontSize: 'clamp(0.8rem, 2.5vw, 0.9rem)',
+              flex: window.innerWidth < 480 ? '1 1 40%' : 'initial'
+            }}
           >
-            {tab.icon} {tab.label}
+            {tab.icon} <span style={{ whiteSpace: 'nowrap' }}>{tab.label}</span>
           </button>
         ))}
       </div>

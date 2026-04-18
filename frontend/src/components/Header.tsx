@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Scale, FileText, Settings, Home, Sun, Moon, User, LogOut, UserX, ChevronDown, Newspaper } from 'lucide-react';
+import { Scale, FileText, Settings, Home, Sun, Moon, User, LogOut, UserX, ChevronDown, Newspaper, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
@@ -12,12 +12,31 @@ export const Header: React.FC = () => {
   const { user, loading, isAnonymous, toggleAnonymous, signOut } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const displayName = user?.user_metadata?.full_name
     ?? user?.email?.split('@')[0]
     ?? 'Counsellor';
 
   const avatarUrl = user?.user_metadata?.avatar_url;
+
+  const NavContent = () => (
+    <>
+      <Link to="/" className={`${styles.navLink} ${location.pathname === '/' ? styles.navActive : ''}`} onClick={() => setIsMenuOpen(false)}>
+        <Home size={18} /> Home
+      </Link>
+      <Link to="/intelligence" className={`${styles.navLink} ${location.pathname === '/intelligence' ? styles.navActive : ''}`} onClick={() => setIsMenuOpen(false)}>
+        <Newspaper size={18} /> Hub
+      </Link>
+      <Link to="/dashboard" className={`${styles.navLink} ${location.pathname === '/dashboard' ? styles.navActive : ''}`} onClick={() => setIsMenuOpen(false)}>
+        <FileText size={18} /> Vault
+      </Link>
+      <Link to="/settings" className={`${styles.navLink} ${location.pathname === '/settings' ? styles.navActive : ''}`} onClick={() => setIsMenuOpen(false)}>
+        <Settings size={18} /> Settings
+      </Link>
+    </>
+  );
 
   return (
     <>
@@ -28,7 +47,12 @@ export const Header: React.FC = () => {
             <h1>LegalSaathi</h1>
           </Link>
 
-          <nav className={styles.nav}>
+          {/* Desktop Nav */}
+          <nav className={styles.desktopNav}>
+            <NavContent />
+          </nav>
+
+          <div className={styles.actions}>
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
@@ -38,28 +62,14 @@ export const Header: React.FC = () => {
               {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
             </button>
 
-            {/* Anonymous/Incognito Toggle */}
+            {/* Anonymous Toggle - Hidden on very small mobile if space is tight, or adjusted */}
             <button
               onClick={toggleAnonymous}
               className={`${styles.anonToggle} ${isAnonymous ? styles.anonActive : ''}`}
-              title={isAnonymous ? 'Incognito ON — cases not saved' : 'Enable Incognito mode'}
             >
               <UserX size={18} />
               {isAnonymous && <span className={styles.anonBadge}>INCOGNITO</span>}
             </button>
-
-            <Link to="/" className={styles.navLink}>
-              <Home size={18} /> Home
-            </Link>
-            <Link to="/intelligence" className={styles.navLink}>
-              <Newspaper size={18} /> Hub
-            </Link>
-            <Link to="/dashboard" className={styles.navLink}>
-              <FileText size={18} /> Vault
-            </Link>
-            <Link to="/settings" className={styles.navLink}>
-              <Settings size={18} /> Settings
-            </Link>
 
             {/* Auth Zone */}
             {loading ? (
@@ -105,11 +115,37 @@ export const Header: React.FC = () => {
                 className={styles.signInBtn}
                 onClick={() => setShowAuthModal(true)}
               >
-                <User size={16} /> Sign In
+                <User size={16} /> <span className={styles.signInText}>Sign In</span>
               </button>
             )}
-          </nav>
+
+            {/* Hamburger Button */}
+            <button
+              className={styles.mobileMenuBtn}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Nav Overlay */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.nav
+              className={styles.mobileNav}
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+            >
+              <div className={styles.mobileNavLinks}>
+                <NavContent />
+              </div>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </header>
 
       <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
