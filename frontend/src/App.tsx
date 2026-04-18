@@ -7,6 +7,7 @@ import { Dashboard } from './pages/Dashboard';
 import { SharedCase } from './pages/SharedCase';
 import LegalAid from './pages/LegalAid';
 import IntelligenceHub from './pages/IntelligenceHub';
+import { Settings } from './pages/Settings';
 
 export const App: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -35,6 +36,7 @@ export const App: React.FC = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/legal-aid" element={<LegalAid />} />
           <Route path="/intelligence" element={<IntelligenceHub />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="/case/:id" element={<SharedCase />} />
           <Route path="/share/:id" element={<SharedCase />} />
         </Routes>

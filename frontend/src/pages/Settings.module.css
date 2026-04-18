@@ -1,0 +1,166 @@
+.settingsWrapper {
+  padding: var(--section-padding) var(--container-padding);
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 80vh;
+}
+
+.header {
+  margin-bottom: 48px;
+}
+
+.header h1 {
+  font-size: clamp(2rem, 8vw, 2.5rem);
+  margin-bottom: 8px;
+  background: var(--grad-premium);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header p {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  padding: 32px;
+  overflow: hidden;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--color-primary);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.desc {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Locked State */
+.lockedView {
+  text-align: center;
+  padding: 100px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.lockIcon {
+  padding: 24px;
+  background: var(--grad-premium);
+  border-radius: 24px;
+  color: white;
+  margin-bottom: 8px;
+  box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
+}
+
+.lockedView h2 {
+  font-size: 2rem;
+  background: var(--grad-premium);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.lockedView p {
+  opacity: 0.7;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+/* User Info */
+.userBadge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding: 20px;
+  background: var(--color-surface-hover);
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--grad-vibrant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.userDetails h4 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.userDetails p {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+/* Data Buttons */
+.dangerZone {
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.dangerZone .sectionTitle {
+  color: #EF4444;
+}
+
+@media (max-width: 640px) {
+  .row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
