@@ -29,7 +29,6 @@ export default function IntelligenceHub() {
   const [searchQuery, setSearchQuery] = useState('');
   const [dailyFact, setDailyFact] = useState('');
   const [screenshotMode, setScreenshotMode] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   const fetchNews = async () => {
     setLoadingNews(true);
@@ -51,15 +50,6 @@ export default function IntelligenceHub() {
     fetchNews();
     const randomFact = DID_YOU_KNOW_FACTS[Math.floor(Math.random() * DID_YOU_KNOW_FACTS.length)];
     setDailyFact(randomFact);
-
-    const handleScroll = () => {
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const filteredGlossary = useMemo(() => {
@@ -114,10 +104,6 @@ export default function IntelligenceHub() {
 
   return (
     <div className={styles.hubWrapper}>
-      <div className={styles.progressContainer}>
-        <div className={styles.progressBar} style={{ width: `${scrollProgress}%` }} />
-      </div>
-
       <header className={styles.hubHeader}>
         <motion.h1 
           initial={{ opacity: 0, scale: 0.9 }}
